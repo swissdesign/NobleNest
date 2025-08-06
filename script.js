@@ -4,7 +4,6 @@
  * Main script for the Noble Nests website.
  * This script handles all core interactive functionalities including mobile navigation,
  * a sticky header effect, and scroll-triggered animations.
- * It is written in vanilla JavaScript, following modern best practices for performance and readability.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -13,14 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function initApp() {
         initMobileNav();
-        initStickyHeader();
         initScrollAnimations();
+
+        // Check if GSAP and ScrollTrigger are loaded before initializing GSAP-based animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            initStickyHeaderWithGSAP();
+            initPinnedScrollAnimation();
+        } else {
+            console.warn('GSAP or ScrollTrigger not loaded. Advanced animations disabled.');
+            // Fallback to non-GSAP sticky header if needed
+            initStickyHeader(); 
+        }
     }
 
     /**
      * Sets up the mobile navigation toggle functionality.
-     * Toggles the '.is-open' class for the menu and hamburger icon.
-     * Prevents background scrolling when the menu is open.
      */
     function initMobileNav() {
         const navToggle = document.querySelector('.mobile-nav-toggle');
@@ -39,20 +46,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Handles the sticky header effect.
-     * Adds a '.scrolled' class to the header when the user scrolls past a certain threshold.
-     * This function is designed to be lightweight.
+     * Handles the sticky header effect using GSAP's ScrollTrigger for better performance.
+     */
+    function initStickyHeaderWithGSAP() {
+        const header = document.querySelector('.main-header');
+        if (!header) {
+            console.warn('Header element not found.');
+            return;
+        }
+
+        ScrollTrigger.create({
+            start: "top top-=" + (header.offsetHeight + 10), // Triggers after scrolling a bit past the header height
+            onEnter: () => header.classList.add('scrolled'),
+            onLeaveBack: () => header.classList.remove('scrolled')
+        });
+    }
+    
+    /**
+     * Fallback sticky header for when GSAP is not available.
      */
     function initStickyHeader() {
         const header = document.querySelector('.main-header');
-        const scrollThreshold = 50; // Pixels to scroll before the header becomes "sticky"
+        const scrollThreshold = 50; 
 
         if (!header) {
             console.warn('Header element not found.');
             return;
         }
 
-        // A simple flag to avoid unnecessary DOM manipulation
         let isScrolled = false;
 
         window.addEventListener('scroll', () => {
@@ -63,12 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.classList.remove('scrolled');
                 isScrolled = false;
             }
-        }, { passive: true }); // Use passive listener for better scroll performance
+        }, { passive: true });
     }
+
 
     /**
      * Initializes scroll-triggered fade-in animations using the IntersectionObserver API.
-     * This is a highly performant method compared to using scroll event listeners.
      */
     function initScrollAnimations() {
         const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
@@ -78,25 +99,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const observerOptions = {
-            root: null, // observes intersections relative to the viewport
-            rootMargin: '0px 0px -100px 0px', // triggers animation a bit before the element is fully in view
-            threshold: 0.1 // triggers when 10% of the element is visible
+            root: null, 
+            rootMargin: '0px 0px -100px 0px', 
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                // When the element is intersecting the viewport
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Stop observing the element once it has been animated to save resources
                     observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Start observing each of the target elements
         elementsToAnimate.forEach(element => {
             observer.observe(element);
+        });
+    }
+
+    /**
+     * Creates the pinned scroll narrative for the "Offer" section using GSAP.
+     */
+    function initPinnedScrollAnimation() {
+        const pinContainer = document.querySelector('#pin-container');
+        const narrativeLines = gsap.utils.toArray('.narrative-line');
+
+        if (!pinContainer || narrativeLines.length === 0) {
+            console.warn('Pinned scroll elements not found.');
+            return;
+        }
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: pinContainer,
+                pin: true,
+                scrub: 1,
+                start: "top top",
+                end: `+=${narrativeLines.length * 100}%` // Adjust duration based on number of lines
+            }
+        });
+
+        narrativeLines.forEach((line, index) => {
+            // Fade in the line
+            tl.to(line, { opacity: 1, duration: 1 }, index);
+            // Hold it, then fade it out (unless it's the last one)
+            if (index < narrativeLines.length - 1) {
+                tl.to(line, { opacity: 0, duration: 1 }, index + 0.8);
+            }
         });
     }
 
