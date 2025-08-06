@@ -1,695 +1,190 @@
-/* --- Handcrafted CSS as part of a weird nerdy love letter to Andrina Schnyder ✦
- * --------------------------------------------
- * Designed by P. Heiniger Design for high-performance,
- * visually striking, and interactive UI elements.
- * Tailored to reflect Andrina's idea.
- * Every class is part of a custom design system.
- --- */
-
-/* --- 0. FONT IMPORTS --- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Inter:wght@400;700&display=swap');
-
-/* --- 1. FOUNDATIONAL SETUP & CSS VARIABLES --- */
-
-/* Modern CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    /* --- Typography --- */
-    --font-primary: 'Cormorant Garamond', serif;
-    --font-secondary: 'Inter', sans-serif;
-
-    /* --- Colors: Forest & Earth Palette --- */
-    --color-background: #F9F8F6;  /* Soft, oat-colored off-white */
-    --color-text: #3D3D3D;          /* Warm, dark grey */
-    --color-primary: #283618;      /* Deep forest green */
-    --color-accent: #A98467;        /* A warm, burnished terracotta/wood tone */
-    --color-white: #FFFFFF;
-}
-
-/* --- 2. GLOBAL BODY & TYPOGRAPHY STYLES --- */
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px; /* Base font size */
-}
-
-body {
-    background-color: var(--color-background);
-    color: var(--color-text);
-    font-family: var(--font-secondary);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Added no-scroll class for mobile menu */
-body.no-scroll {
-    overflow: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primary);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-}
-
-/* Fluid Typography using clamp() */
-h1 {
-    font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
-    margin-bottom: 1.5rem;
-}
-
-h2 {
-    font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
-}
-
-h3 {
-    font-size: clamp(1.5rem, 3vw + 1rem, 2.5rem);
-}
-
-p {
-    margin-bottom: 1rem;
-    max-width: 65ch; /* Improves readability */
-    margin-left: auto; /* Centers paragraphs with max-width */
-    margin-right: auto; /* Centers paragraphs with max-width */
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease-out;
-}
-
-a:not(.btn-primary):not(.btn-secondary)::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: var(--color-accent);
-    bottom: -2px;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-a:not(.btn-primary):not(.btn-secondary):hover {
-    color: var(--color-accent);
-}
-
-a:not(.btn-primary):not(.btn-secondary):hover::after {
-    transform: scaleX(1);
-}
-
-
-/* --- 3. LAYOUT & REUSABLE UTILITY CLASSES --- */
-
-.container {
-    width: 100%;
-    max-width: 1140px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-}
-
-/* Enhanced Section Spacing */
-main > section {
-    padding: 6rem 0;
-}
-
-.btn-primary,
-.btn-secondary {
-    display: inline-block;
-    padding: 0.8rem 1.8rem;
-    font-family: var(--font-secondary);
-    font-weight: 700;
-    border-radius: 50px; /* Pill shape for a modern feel */
-    border: 2px solid transparent;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.3s ease-out, background-color 0.3s ease-out, color 0.3s ease-out, border-color 0.3s ease-out;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border-color: var(--color-primary);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.btn-primary:hover, .btn-primary:focus,
-.btn-secondary:hover, .btn-secondary:focus {
-    transform: scale(1.03);
-}
-
-.btn-primary:hover, .btn-primary:focus {
-    background-color: #3a4f22; /* Slightly lighter green */
-}
-
-.btn-secondary:hover, .btn-secondary:focus {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
-.two-column-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    align-items: center; /* Vertically align items in the grid */
-}
-
-
-/* --- 4. CORE COMPONENT STYLING --- */
-
-/* Header */
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 0;
-    z-index: 1000;
-    transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, padding 0.3s ease-out;
-}
-
-.main-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main-header.scrolled {
-    background-color: rgba(249, 248, 246, 0.9); /* Semi-transparent background */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    padding: 1rem 0;
-}
-
-.logo {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-}
-
-/* Main Navigation */
-.main-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.main-nav a {
-    font-weight: 700;
-}
-
-.main-nav a::after {
-    bottom: -5px; /* Adjust underline position for nav */
-}
-
-/* Mobile Navigation - Hidden on Desktop */
-.mobile-nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.mobile-nav-toggle .hamburger-icon {
-    width: 30px;
-    height: 2px;
-    background-color: var(--color-primary);
-    position: relative;
-    transition: all 0.3s ease-out;
-}
-
-.mobile-nav-toggle .hamburger-icon::before,
-.mobile-nav-toggle .hamburger-icon::after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 2px;
-    background-color: var(--color-primary);
-    left: 0;
-    transition: all 0.3s ease-out;
-}
-
-.mobile-nav-toggle .hamburger-icon::before {
-    top: -8px;
-}
-
-.mobile-nav-toggle .hamburger-icon::after {
-    bottom: -8px;
-}
-
-/* --- 5. PAGE SECTION STYLING --- */
-
-/* Hero Section Enhancement */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    color: var(--color-white);
-    padding: 6rem 1.5rem; /* Add padding for content */
-    background-image: url('https://images.unsplash.com/photo-1549638441-196372164847?q=80&w=2940&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Parallax effect */
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
-}
-
-.hero-content {
-    position: relative; /* To sit on top of the overlay */
-    z-index: 2;
-}
-
-.hero h1 {
-    color: var(--color-white);
-}
-
-.page-header p {
-    max-width: 50ch;
-}
-
-/* Centering for Intro and CTA sections */
-.intro-section .container,
-.cta-section .container,
-.philosophy-section .container,
-.offer-section .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Features Section Grid */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
-    align-items: start; /* Aligns items to the top of the row */
-}
-
-.feature-item {
-    text-align: center;
-}
-
-/* Testimonial & Philosophy Section Enhancement */
-.testimonial-section, .philosophy-section {
-    background-color: #F0EFEA; /* Slightly different background to stand out */
-}
-
-.testimonial-section blockquote,
-.philosophy-section blockquote {
-    position: relative;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-
-.testimonial-section blockquote p,
-.philosophy-section blockquote p {
-    font-family: var(--font-primary);
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    font-style: italic;
-    line-height: 1.4;
-    color: var(--color-primary);
-    margin: 0;
-}
-
-.testimonial-section blockquote::before,
-.philosophy-section blockquote::before {
-    content: '“';
-    position: absolute;
-    top: 0rem;
-    left: -2rem;
-    font-size: 8rem;
-    font-family: var(--font-primary);
-    color: var(--color-accent);
-    opacity: 0.2;
-    z-index: 1;
-}
-
-.testimonial-section cite {
-    display: block;
-    margin-top: 1.5rem;
-    font-style: normal;
-    font-weight: 700;
-}
-
-/* Offer Section & Pinned Scroll Styling */
-.offer-section {
-    padding-bottom: 2rem;
-}
-
-#pin-container {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.pin-content-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.narrative-line {
-    position: absolute;
-    opacity: 0;
-    font-family: var(--font-primary);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    text-align: center;
-    padding: 0 1.5rem;
-}
-
-/* About Section Styling */
-.about-section-fullwidth-image {
-    width: 100%;
-    height: 60vh;
-    background-size: cover;
-    background-position: center;
-}
-
-.about-section-text {
-    background-color: #F0EFEA;
-}
-
-.about-section-text .container {
-    text-align: center;
-}
-
-.about-section-text p {
-    text-align: left;
-    max-width: 65ch;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Residenzen Page Styling */
-.portfolio-section {
-    padding-top: 0;
-}
-
-.property-item {
-    margin-bottom: 6rem;
-}
-
-.property-list .property-item:last-child {
-    margin-bottom: 0;
-}
-
-.property-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.property-header h2 {
-    margin-bottom: 0.5rem;
-}
-
-.property-details {
-    font-size: 1.1rem;
-    color: var(--color-accent);
-    font-weight: 700;
-}
-
-.gallery-main {
-    margin-bottom: 1rem;
-}
-
-.gallery-main img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.gallery-thumbnails {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.gallery-thumbnails img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.property-description {
-    margin-top: 3rem;
-}
-
-.property-description h3 {
-    margin-bottom: 1.5rem;
-}
-
-.property-description ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.property-description li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.property-description li::before {
-    content: '✦';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-}
-
-
-/* --- NEW: Das Tal / Journal Page Styling --- */
-.journal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.journal-item {
-    background-color: var(--color-white);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    /* FIX: Added flexbox to align content */
-    display: flex;
-    flex-direction: column;
-}
-
-.journal-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.journal-item-image {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-}
-
-.journal-item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.journal-item:hover .journal-item-image img {
-    transform: scale(1.05);
-}
-
-.journal-item-text {
-    padding: 1.5rem;
-    /* FIX: Added flexbox to align content */
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.journal-item-category {
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    letter-spacing: 1px;
-}
-
-.journal-item-text h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.journal-item-text p {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    color: #666;
-    margin-left: 0;
-    margin-right: 0;
-    /* FIX: Added flex-grow to push the readmore link down */
-    flex-grow: 1;
-}
-
-.journal-item-readmore {
-    font-weight: 700;
-    color: var(--color-primary);
-}
-
-
-/* Footer */
-.main-footer {
-    padding: 4rem 0 2rem 0;
-    margin-top: 0;
-    background-color: #EAE8E3;
-    text-align: center;
-}
-
-.footer-nav ul, .footer-social ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.footer-legal {
-    font-size: 0.875rem;
-    color: #888;
-}
-
-
-/* --- 6. INNOVATIVE "WOW" EFFECTS & DETAILS --- */
-
-.fade-in-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s, transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.1s;
-}
-
-.fade-in-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* --- 7. MOBILE-FIRST MEDIA QUERIES --- */
-
-/* Tablet and larger */
-@media (min-width: 768px) {
-    .two-column-grid {
-        grid-template-columns: 1fr 1fr;
+'use strict';
+
+/** Created by P. Heiniger Design as a weird nerdy love letter to Andrina Schnyder *
+ * Main script for the Noble Nests website.
+ * This script handles all core interactive functionalities including mobile navigation,
+ * a sticky header effect, and scroll-triggered animations.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+
+    /**
+     * Initializes all interactive components of the site.
+     */
+    function initApp() {
+        initMobileNav();
+        initScrollAnimations();
+
+        // Check if GSAP and ScrollTrigger are loaded before initializing GSAP-based animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            initStickyHeaderWithGSAP();
+            initPinnedScrollAnimation();
+            initVideoScrubAndOverlay(); // Updated function name
+        } else {
+            console.warn('GSAP or ScrollTrigger not loaded. Advanced animations disabled.');
+            // Fallback to non-GSAP sticky header if needed
+            initStickyHeader(); 
+        }
     }
-    .about-section-text p {
-        text-align: left;
+
+    /**
+     * Sets up the mobile navigation toggle functionality.
+     */
+    function initMobileNav() {
+        const navToggle = document.querySelector('.mobile-nav-toggle');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (!navToggle || !mainNav) {
+            console.warn('Mobile navigation elements not found.');
+            return;
+        }
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('is-open');
+            mainNav.classList.toggle('is-open');
+            document.body.classList.toggle('no-scroll');
+        });
     }
-}
 
-/* Desktop */
-@media (min-width: 1024px) {
-    /* Desktop styles can go here if needed */
-}
+    /**
+     * Handles the sticky header effect using GSAP's ScrollTrigger for better performance.
+     */
+    function initStickyHeaderWithGSAP() {
+        const header = document.querySelector('.main-header');
+        if (!header) {
+            console.warn('Header element not found.');
+            return;
+        }
 
-/* Mobile navigation styles */
-@media (max-width: 767px) {
-    .main-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: var(--color-primary);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: translateX(100%);
-        transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+        ScrollTrigger.create({
+            start: "top top-=" + (header.offsetHeight + 10), // Triggers after scrolling a bit past the header height
+            onEnter: () => header.classList.add('scrolled'),
+            onLeaveBack: () => header.classList.remove('scrolled')
+        });
     }
     
-    .main-nav.is-open {
-        transform: translateX(0);
+    /**
+     * Fallback sticky header for when GSAP is not available.
+     */
+    function initStickyHeader() {
+        const header = document.querySelector('.main-header');
+        const scrollThreshold = 50; 
+
+        if (!header) {
+            console.warn('Header element not found.');
+            return;
+        }
+
+        let isScrolled = false;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold && !isScrolled) {
+                header.classList.add('scrolled');
+                isScrolled = true;
+            } else if (window.scrollY <= scrollThreshold && isScrolled) {
+                header.classList.remove('scrolled');
+                isScrolled = false;
+            }
+        }, { passive: true });
     }
 
-    .main-nav ul {
-        flex-direction: column;
-        text-align: center;
-        gap: 2.5rem;
+
+    /**
+     * Initializes scroll-triggered fade-in animations using the IntersectionObserver API.
+     */
+    function initScrollAnimations() {
+        const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
+
+        if (elementsToAnimate.length === 0) {
+            return; // No elements to observe
+        }
+
+        const observerOptions = {
+            root: null, 
+            rootMargin: '0px 0px -100px 0px', 
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        elementsToAnimate.forEach(element => {
+            observer.observe(element);
+        });
     }
 
-    .main-nav a {
-        color: var(--color-white);
-        font-size: 2rem;
-        font-family: var(--font-primary);
+    /**
+     * Creates the pinned scroll narrative for the "Offer" section using GSAP.
+     */
+    function initPinnedScrollAnimation() {
+        const pinContainer = document.querySelector('#pin-container');
+        const narrativeLines = gsap.utils.toArray('.narrative-line');
+
+        if (!pinContainer || narrativeLines.length === 0) {
+            return;
+        }
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: pinContainer,
+                pin: true,
+                scrub: 1,
+                start: "top top",
+                end: `+=${narrativeLines.length * 100}%`
+            }
+        });
+
+        narrativeLines.forEach((line, index) => {
+            tl.to(line, { opacity: 1, duration: 1 }, index);
+            if (index < narrativeLines.length - 1) {
+                tl.to(line, { opacity: 0, duration: 1 }, index + 0.8);
+            }
+        });
     }
-    
-    .main-nav a:hover {
-        color: var(--color-accent);
+
+    /**
+     * Creates the scroll-controlled video playback and text overlay effect.
+     */
+    function initVideoScrubAndOverlay() {
+        const propertyItems = document.querySelectorAll('.property-item');
+        if (propertyItems.length === 0) return;
+
+        propertyItems.forEach(item => {
+            const video = item.querySelector('.property-video');
+            const videoContainer = item.querySelector('.property-video-hero');
+            const textOverlay = item.querySelector('.property-header-overlay');
+
+            if (!video || !videoContainer || !textOverlay) return;
+
+            video.pause();
+
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: videoContainer,
+                    scrub: true,
+                    pin: true, // Pin the container
+                    start: "top top",
+                    end: "bottom+=100% top" // Extend the scroll duration
+                },
+                defaults: { ease: "none" }
+            });
+
+            video.onloadedmetadata = function() {
+                tl.to(video, { currentTime: video.duration });
+            };
+            
+            // Animate the text overlay to fade out as you scroll
+            tl.to(textOverlay, { opacity: 0 }, 0);
+        });
     }
-    
-    .main-nav a::after {
-        background-color: var(--color-accent);
-    }
-    
-    .mobile-nav-toggle {
-        display: block;
-    }
-    
-    /* Hamburger animation when menu is open */
-    .mobile-nav-toggle.is-open .hamburger-icon {
-        background-color: transparent;
-    }
-    
-    .mobile-nav-toggle.is-open .hamburger-icon::before {
-        transform: rotate(45deg) translate(5px, 6px);
-        background-color: var(--color-white); /* Change color on open */
-    }
-    
-    .mobile-nav-toggle.is-open .hamburger-icon::after {
-        transform: rotate(-45deg) translate(5px, -6px);
-        background-color: var(--color-white); /* Change color on open */
-    }
-}
+
+    // Run the application
+    initApp();
+
+});
