@@ -169,6 +169,7 @@ main > section {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
+    align-items: center; /* Vertically align items in the grid */
 }
 
 
@@ -297,7 +298,8 @@ main > section {
 /* Centering for Intro and CTA sections */
 .intro-section .container,
 .cta-section .container,
-.philosophy-section .container {
+.philosophy-section .container,
+.offer-section .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -365,7 +367,7 @@ main > section {
 .offer-section ul {
     list-style: none;
     margin-top: 2rem;
-    text-align: center;
+    padding-left: 0; /* Remove default padding */
 }
 
 .offer-section li {
@@ -382,6 +384,17 @@ main > section {
 
 .about-section-text .container {
     text-align: center; /* FIX: Centers the button */
+}
+
+.about-section-text p {
+    text-align: left; /* Keep bio text left-aligned for readability */
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px; /* Soft rounded corners */
 }
 
 /* Footer */
@@ -426,6 +439,9 @@ main > section {
 @media (min-width: 768px) {
     .two-column-grid {
         grid-template-columns: 1fr 1fr;
+    }
+    .about-section-text p {
+        text-align: left;
     }
 }
 
