@@ -47,16 +47,23 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Added no-scroll class for mobile menu */
+body.no-scroll {
+    overflow: hidden;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-primary);
+    margin-bottom: 1rem;
 }
 
 /* Fluid Typography using clamp() */
 h1 {
     font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+    margin-bottom: 1.5rem;
 }
 
 h2 {
@@ -69,7 +76,7 @@ h3 {
 
 p {
     margin-bottom: 1rem;
-    max-width: 75ch; /* Improves readability */
+    max-width: 65ch; /* Improves readability */
 }
 
 a {
@@ -79,7 +86,7 @@ a {
     transition: color 0.3s ease-out;
 }
 
-a::after {
+a:not(.btn-primary):not(.btn-secondary)::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -92,11 +99,11 @@ a::after {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-a:hover {
+a:not(.btn-primary):not(.btn-secondary):hover {
     color: var(--color-accent);
 }
 
-a:hover::after {
+a:not(.btn-primary):not(.btn-secondary):hover::after {
     transform: scaleX(1);
 }
 
@@ -110,6 +117,11 @@ a:hover::after {
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+}
+
+/* Enhanced Section Spacing */
+main > section {
+    padding: 6rem 0;
 }
 
 .btn-primary,
@@ -236,13 +248,109 @@ a:hover::after {
     bottom: -8px;
 }
 
+/* --- 5. PAGE SECTION STYLING --- */
+
+/* Hero Section Enhancement */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: var(--color-white);
+    padding: 6rem 0; /* Add padding for content */
+    background-image: url('https://images.unsplash.com/photo-1549638441-196372164847?q=80&w=2940&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+}
+
+.hero-content {
+    position: relative; /* To sit on top of the overlay */
+    z-index: 2;
+}
+
+.hero h1 {
+    color: var(--color-white);
+}
+
+/* Centering for Intro and CTA sections */
+.intro-section .container,
+.cta-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Features Section Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+/* Testimonial Section Enhancement */
+.testimonial-section {
+    background-color: #F0EFEA; /* Slightly different background to stand out */
+}
+
+.testimonial-section blockquote {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonial-section blockquote p {
+    font-family: var(--font-primary);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.testimonial-section blockquote::before {
+    content: '“';
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    font-size: 8rem;
+    font-family: var(--font-primary);
+    color: var(--color-accent);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.testimonial-section cite {
+    display: block;
+    margin-top: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+}
 
 /* Footer */
 .main-footer {
     padding: 4rem 0 2rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    text-align: center;
+    margin-top: 0; /* Removed margin as sections have padding */
+    background-color: #EAE8E3;
 }
 
 .footer-nav ul, .footer-social ul {
@@ -259,7 +367,7 @@ a:hover::after {
 }
 
 
-/* --- 5. INNOVATIVE "WOW" EFFECTS & DETAILS --- */
+/* --- 6. INNOVATIVE "WOW" EFFECTS & DETAILS --- */
 
 .fade-in-on-scroll {
     opacity: 0;
@@ -273,7 +381,7 @@ a:hover::after {
 }
 
 
-/* --- 6. MOBILE-FIRST MEDIA QUERIES --- */
+/* --- 7. MOBILE-FIRST MEDIA QUERIES --- */
 
 /* Tablet and larger */
 @media (min-width: 768px) {
