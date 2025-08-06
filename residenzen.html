@@ -11,12 +11,16 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
     <!-- JavaScript (deferred for performance) -->
     <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- HEADER SECTION START (Copied from index.html) -->
+    <!-- HEADER SECTION START -->
     <header class="main-header">
         <div class="container">
             <a href="/" class="logo">Noble Nests</a>
@@ -49,27 +53,36 @@
 
         <!-- PROPERTY PORTFOLIO SECTION START -->
         <section class="portfolio-section">
-            <div class="container">
-                <div class="property-list">
+            <div class="property-list">
 
-                    <!-- --- START: Property Item (The Repeatable Component) --- -->
-                    <article class="property-item fade-in-on-scroll">
-                        <div class="property-header">
+                <!-- --- START: Property Item (The Repeatable Component) --- -->
+                <article class="property-item">
+                    
+                    <!-- VIDEO HERO START -->
+                    <div class="property-video-hero">
+                        <div class="video-container">
+                            <video class="property-video" src="hero-video.mp4" muted playsinline preload="auto"></video>
+                        </div>
+                    </div>
+                    <!-- VIDEO HERO END -->
+
+                    <div class="container">
+                        <div class="property-header fade-in-on-scroll">
                             <h2>Casa Piz Badus</h2>
                             <span class="property-details">2 Schlafzimmer | Bis zu 4 Gäste</span>
                         </div>
-                        
-                        <div class="gallery">
-                            <div class="gallery-main">
-                                <img src="https://placehold.co/1140x700/A98467/F9F8F6?text=Wohnbereich" alt="Heller und offener Wohnbereich der Casa Piz Badus">
-                            </div>
-                            <div class="gallery-thumbnails">
-                                <img src="https://placehold.co/560x340/283618/F9F8F6?text=Detail" alt="Detailaufnahme einer kuratierten Dekoration">
-                                <img src="https://placehold.co/560x340/3D3D3D/F9F8F6?text=Aussicht" alt="Aussicht vom Balkon auf die Berge">
-                            </div>
-                        </div>
+                    </div>
 
-                        <div class="property-description">
+                    <!-- FULL WIDTH STRIP START -->
+                    <div class="full-width-strip fade-in-on-scroll">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2900&auto=format&fit=crop" alt="Heller und offener Wohnbereich der Casa Piz Badus">
+                        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=2900&auto=format&fit=crop" alt="Detailaufnahme einer kuratierten Dekoration">
+                        <img src="https://images.unsplash.com/photo-1615875605825-5eb9bb5c3926?q=80&w=2892&auto=format&fit=crop" alt="Aussicht vom Balkon auf die Berge">
+                    </div>
+                    <!-- FULL WIDTH STRIP END -->
+                    
+                    <div class="container">
+                        <div class="property-description fade-in-on-scroll">
                             <div class="two-column-grid">
                                 <div class="column">
                                     <h3>Das Erlebnis</h3>
@@ -86,15 +99,15 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
-                    <!-- --- END: Property Item --- -->
+                    </div>
+                </article>
+                <!-- --- END: Property Item --- -->
 
-                </div>
             </div>
         </section>
         <!-- PROPERTY PORTFOLIO SECTION END -->
 
-        <!-- FINAL CTA SECTION START (Copied from index.html) -->
+        <!-- FINAL CTA SECTION START -->
         <section id="anfrage" class="cta-section">
             <div class="container fade-in-on-scroll">
                 <h2>Bereit, das Potenzial Ihrer Immobilie zu entfalten?</h2>
@@ -107,7 +120,7 @@
     </main>
     <!-- MAIN CONTENT END -->
 
-    <!-- FOOTER SECTION START (Copied from index.html) -->
+    <!-- FOOTER SECTION START -->
     <footer class="main-footer">
         <div class="container">
             <nav class="footer-nav">
@@ -134,3 +147,4 @@
 
 </body>
 </html>
+
