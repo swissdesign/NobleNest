@@ -77,6 +77,8 @@ h3 {
 p {
     margin-bottom: 1rem;
     max-width: 65ch; /* Improves readability */
+    margin-left: auto; /* FIX: Centers paragraphs with max-width */
+    margin-right: auto; /* FIX: Centers paragraphs with max-width */
 }
 
 a {
