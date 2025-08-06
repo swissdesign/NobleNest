@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
             initStickyHeaderWithGSAP();
             initPinnedScrollAnimation();
+            initVideoScrub(); // ADDED: Initialize the new video scrub effect
         } else {
             console.warn('GSAP or ScrollTrigger not loaded. Advanced animations disabled.');
             // Fallback to non-GSAP sticky header if needed
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const narrativeLines = gsap.utils.toArray('.narrative-line');
 
         if (!pinContainer || narrativeLines.length === 0) {
-            console.warn('Pinned scroll elements not found.');
+            // This is not an error, the element just might not be on the current page.
             return;
         }
 
@@ -136,17 +137,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 pin: true,
                 scrub: 1,
                 start: "top top",
-                end: `+=${narrativeLines.length * 100}%` // Restored original timing
+                end: `+=${narrativeLines.length * 100}%`
             }
         });
 
         narrativeLines.forEach((line, index) => {
-            // Fade in the line
             tl.to(line, { opacity: 1, duration: 1 }, index);
-            // Hold it, then fade it out (unless it's the last one)
             if (index < narrativeLines.length - 1) {
                 tl.to(line, { opacity: 0, duration: 1 }, index + 0.8);
             }
+        });
+    }
+
+    /**
+     * NEW: Creates the scroll-controlled video playback effect for property heroes.
+     */
+    function initVideoScrub() {
+        const videos = document.querySelectorAll('.property-video');
+        if (videos.length === 0) {
+            // Not an error, just means we are not on the residenzen.html page
+            return;
+        }
+
+        videos.forEach(video => {
+            const videoContainer = video.closest('.property-video-hero');
+            if (!videoContainer) return;
+
+            video.pause();
+
+            // Use a GSAP timeline to link scroll position to video playback time
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: videoContainer,
+                    scrub: true,
+                    start: "top top",
+                    end: "bottom top" // The video will play through its full duration as you scroll from the top to the bottom of the container
+                },
+                defaults: { ease: "none" }
+            });
+
+            // Once the video metadata is loaded, we know its duration
+            video.onloadedmetadata = function() {
+                // Animate the video's currentTime property from 0 to its full duration
+                tl.to(video, { currentTime: video.duration });
+            };
         });
     }
 
@@ -154,3 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
 
 });
+
