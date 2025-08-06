@@ -295,6 +295,10 @@ main > section {
     color: var(--color-white);
 }
 
+.page-header p {
+    max-width: 50ch;
+}
+
 /* Centering for Intro and CTA sections */
 .intro-section .container,
 .cta-section .container,
@@ -363,9 +367,9 @@ main > section {
     font-weight: 700;
 }
 
-/* Offer Section & Pinned Scroll Styling (NEW) */
+/* Offer Section & Pinned Scroll Styling */
 .offer-section {
-    padding-bottom: 2rem; /* Reduce bottom padding before pin */
+    padding-bottom: 2rem;
 }
 
 #pin-container {
@@ -374,14 +378,14 @@ main > section {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Important for pinning */
+    overflow: hidden;
 }
 
 .pin-content-wrapper {
     position: relative;
     width: 100%;
     max-width: 800px;
-    height: 300px; /* Give it a fixed height to contain the absolute elements */
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -419,19 +423,99 @@ main > section {
     margin-right: auto;
 }
 
-.about-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px; /* Soft rounded corners */
+/* --- NEW: Residenzen Page v2 Styling --- */
+.portfolio-section {
+    padding-top: 0;
 }
+
+.property-video-hero {
+    height: 250vh; /* This gives the scroll duration for the video */
+    position: relative;
+}
+
+.property-video-hero .video-container {
+    height: 100vh;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+}
+
+.property-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.property-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-top: 6rem;
+}
+
+.property-header h2 {
+    margin-bottom: 0.5rem;
+}
+
+.property-details {
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.full-width-strip {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem; /* Small gap between images */
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+}
+
+.full-width-strip img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+.property-description {
+    padding-bottom: 6rem;
+}
+
+.property-description h3 {
+    margin-bottom: 1.5rem;
+}
+
+.property-description ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.property-description li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.property-description li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
 
 /* Footer */
 .main-footer {
     padding: 4rem 0 2rem 0;
-    margin-top: 0; /* Removed margin as sections have padding */
+    margin-top: 0;
     background-color: #EAE8E3;
-    text-align: center; /* Ensures all content inside is centered */
+    text-align: center;
 }
 
 .footer-nav ul, .footer-social ul {
@@ -538,3 +622,4 @@ main > section {
         background-color: var(--color-white); /* Change color on open */
     }
 }
+
