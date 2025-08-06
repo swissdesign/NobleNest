@@ -136,19 +136,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 pin: true,
                 scrub: 1,
                 start: "top top",
-                end: `+=${narrativeLines.length * 100}%` // Adjust duration based on number of lines
+                end: "+=2000" // FIX: Changed to a more reasonable scroll length
             }
         });
 
+        // Set initial state for all lines
+        gsap.set(narrativeLines, { opacity: 0, y: 20 });
+
         narrativeLines.forEach((line, index) => {
-            // Fade in the line
-            tl.to(line, { opacity: 1, duration: 1 }, index);
+            // Animate the line into view
+            tl.to(line, { opacity: 1, y: 0, duration: 1 }, index * 0.8);
+            
             // Hold it, then fade it out (unless it's the last one)
             if (index < narrativeLines.length - 1) {
-                tl.to(line, { opacity: 0, duration: 1 }, index + 0.8);
+                tl.to(line, { opacity: 0, y: -20, duration: 1 }, index * 0.8 + 0.8);
             }
         });
     }
+
+    // Run the application
+    initApp();
+
+});
+
 
     // Run the application
     initApp();
