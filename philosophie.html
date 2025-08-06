@@ -1,10 +1,3 @@
-<!-- /* --- Handcrafted HTML as part of a weird nerdy love letter to Andrina Schnyder ✦
- * --------------------------------------------
- * Designed by P. Heiniger Design for high-performance,
- * visually striking, and interactive UI elements.
- * Tailored to reflect Andrina's idea.
- --- */ -->
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -18,12 +11,16 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- JavaScript (deferred for performance) -->
+    <!-- GSAP Animation Libraries (NEW) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
+    <!-- Main JavaScript (deferred for performance) -->
     <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- HEADER SECTION START (Copied from index.html) -->
+    <!-- HEADER SECTION START -->
     <header class="main-header">
         <div class="container">
             <a href="/" class="logo">Noble Nests</a>
@@ -83,26 +80,25 @@
         </section>
         <!-- "DIE MAGIE" SECTION END -->
 
-        <!-- "DAS ANGEBOT" SECTION START -->
+        <!-- "DAS ANGEBOT" SECTION START (RESTRUCTURED FOR PINNED SCROLL) -->
         <section class="offer-section">
             <div class="container fade-in-on-scroll">
                 <h2>Das Angebot (Unser 'What')</h2>
                 <h3>Der 'Signature Service'</h3>
-                <p>Wir halten es einfach, damit wir es perfekt machen können. Unser Kernangebot umfasst alles, was für ein 5-Sterne-Erlebnis entscheidend ist:</p>
-                <ul>
-                    <li><strong>Makellose Wohnungen:</strong> Perfekte Sauberkeit und einladendes Styling, jedes einzelne Mal.</li>
-                    <li><strong>Mühelose Kommunikation:</strong> Schnelle, herzliche und professionelle Betreuung für Sie und Ihre Gäste.</li>
-                    <li><strong>Das 'Wow-Protokoll' als Standard:</strong> Unsere einzigartigen Aufmerksamkeiten sind kein Extra, sondern der Kern unseres Versprechens.</li>
-                </ul>
+            </div>
+            <div id="pin-container">
+                <div class="pin-content-wrapper">
+                    <p class="narrative-line"><strong>Makellose Wohnungen:</strong> Perfekte Sauberkeit und einladendes Styling, jedes einzelne Mal.</p>
+                    <p class="narrative-line"><strong>Mühelose Kommunikation:</strong> Schnelle, herzliche und professionelle Betreuung für Sie und Ihre Gäste.</p>
+                    <p class="narrative-line"><strong>Das 'Wow-Protokoll' als Standard:</strong> Unsere einzigartigen Aufmerksamkeiten sind kein Extra, sondern der Kern unseres Versprechens.</p>
+                </div>
             </div>
         </section>
         <!-- "DAS ANGEBOT" SECTION END -->
 
-        <!-- "ABOUT HER" SECTION START: RESTRUCTURED -->
+        <!-- "ABOUT HER" SECTION START -->
         <section class="about-section-fullwidth-image" style="background-image: url('https://placehold.co/1920x1080/283618/F9F8F6?text=Andrina');" aria-label="Ein Porträt von Andrina, der Gründerin von Noble Nests">
-            <!-- This section is now a full-width background image for visual impact -->
         </section>
-
         <section class="about-section-text">
             <div class="container fade-in-on-scroll">
                 <h2>Über Andrina</h2>
@@ -113,7 +109,7 @@
         </section>
         <!-- "ABOUT HER" SECTION END -->
 
-        <!-- FINAL CTA SECTION START (Copied from index.html) -->
+        <!-- FINAL CTA SECTION START -->
         <section id="anfrage" class="cta-section">
             <div class="container fade-in-on-scroll">
                 <h2>Bereit, das Potenzial Ihrer Immobilie zu entfalten?</h2>
@@ -126,7 +122,7 @@
     </main>
     <!-- MAIN CONTENT END -->
 
-    <!-- FOOTER SECTION START (Copied from index.html) -->
+    <!-- FOOTER SECTION START -->
     <footer class="main-footer">
         <div class="container">
             <nav class="footer-nav">
