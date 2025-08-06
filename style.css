@@ -303,7 +303,8 @@ main > section {
 .intro-section .container,
 .cta-section .container,
 .philosophy-section .container,
-.offer-section .container {
+.offer-section .container,
+.contact-section .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -532,8 +533,8 @@ main > section {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-    display: flex; /* FIX: Use Flexbox */
-    flex-direction: column; /* FIX: Arrange items vertically */
+    display: flex; 
+    flex-direction: column; 
 }
 
 .journal-item:hover {
@@ -560,9 +561,9 @@ main > section {
 
 .journal-item-text {
     padding: 1.5rem;
-    flex-grow: 1; /* FIX: Allow this area to grow */
-    display: flex; /* FIX: Use Flexbox */
-    flex-direction: column; /* FIX: Arrange items vertically */
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
 }
 
 .journal-item-category {
@@ -586,7 +587,7 @@ main > section {
     color: #666;
     margin-left: 0;
     margin-right: 0;
-    flex-grow: 1; /* FIX: This makes the paragraph expand, pushing the link down */
+    flex-grow: 1; 
 }
 
 .journal-item-readmore {
@@ -594,7 +595,7 @@ main > section {
     color: var(--color-primary);
 }
 
-/* Anfrage / Contact Page Styling */
+/* --- NEW: Anfrage / Contact Page Styling --- */
 .contact-section .container > p {
     max-width: 60ch;
 }
@@ -754,4 +755,3 @@ main > section {
         background-color: var(--color-white); /* Change color on open */
     }
 }
-
