@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
             initStickyHeaderWithGSAP();
             initPinnedScrollAnimation();
-            initVideoScrubAndOverlay(); // Updated function name
+            initVideoScrubAndOverlay(); // For residenzen.html
         } else {
             console.warn('GSAP or ScrollTrigger not loaded. Advanced animations disabled.');
             // Fallback to non-GSAP sticky header if needed
@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: videoContainer,
-                    scrub: true,
-                    pin: true, // Pin the container
+                    scrub: 1,
+                    pin: true, 
                     start: "top top",
-                    end: "bottom+=100% top" // Extend the scroll duration
+                    end: "bottom+=100% top" 
                 },
                 defaults: { ease: "none" }
             });
@@ -179,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tl.to(video, { currentTime: video.duration });
             };
             
-            // Animate the text overlay to fade out as you scroll
             tl.to(textOverlay, { opacity: 0 }, 0);
         });
     }
@@ -188,5 +187,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initApp();
 
 });
-
-
