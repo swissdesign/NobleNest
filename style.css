@@ -77,8 +77,8 @@ h3 {
 p {
     margin-bottom: 1rem;
     max-width: 65ch; /* Improves readability */
-    margin-left: auto; /* FIX: Centers paragraphs with max-width */
-    margin-right: auto; /* FIX: Centers paragraphs with max-width */
+    margin-left: auto; /* Centers paragraphs with max-width */
+    margin-right: auto; /* Centers paragraphs with max-width */
 }
 
 a {
@@ -302,7 +302,7 @@ main > section {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 3rem;
     margin-top: 3rem;
-    align-items: start; /* FIX: Aligns items to the top of the row */
+    align-items: start; /* Aligns items to the top of the row */
 }
 
 .feature-item {
@@ -354,6 +354,7 @@ main > section {
     padding: 4rem 0 2rem 0;
     margin-top: 0; /* Removed margin as sections have padding */
     background-color: #EAE8E3;
+    text-align: center; /* Ensures all content inside is centered */
 }
 
 .footer-nav ul, .footer-social ul {
@@ -367,6 +368,7 @@ main > section {
 .footer-legal {
     font-size: 0.875rem;
     color: #888;
+    text-align: center; /* FIX: Explicitly centers the legal text */
 }
 
 
