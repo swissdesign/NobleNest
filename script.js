@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 pin: true,
                 scrub: 1,
                 start: "top top",
-                end: `+=${narrativeLines.length * 100}%` // This is the original, long-scroll version
+                end: `+=${narrativeLines.length * 100}%` // Restored original timing
             }
         });
 
@@ -149,11 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Run the application
-    initApp();
-
-});
 
     // Run the application
     initApp();
