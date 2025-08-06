@@ -363,15 +363,37 @@ main > section {
     font-weight: 700;
 }
 
-/* Offer Section List Styling */
-.offer-section ul {
-    list-style: none;
-    margin-top: 2rem;
-    padding-left: 0; /* Remove default padding */
+/* Offer Section & Pinned Scroll Styling (NEW) */
+.offer-section {
+    padding-bottom: 2rem; /* Reduce bottom padding before pin */
 }
 
-.offer-section li {
-    margin-bottom: 0.5rem;
+#pin-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Important for pinning */
+}
+
+.pin-content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 300px; /* Give it a fixed height to contain the absolute elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.narrative-line {
+    position: absolute;
+    opacity: 0;
+    font-family: var(--font-primary);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    text-align: center;
+    padding: 0 1.5rem;
 }
 
 /* About Section Styling */
@@ -382,12 +404,19 @@ main > section {
     background-position: center;
 }
 
+.about-section-text {
+    background-color: #F0EFEA;
+}
+
 .about-section-text .container {
-    text-align: center; /* FIX: Centers the button */
+    text-align: center;
 }
 
 .about-section-text p {
-    text-align: left; /* Keep bio text left-aligned for readability */
+    text-align: left;
+    max-width: 65ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-image {
