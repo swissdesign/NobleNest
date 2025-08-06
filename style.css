@@ -510,12 +510,14 @@ main > section {
 }
 
 .journal-item {
-    display: block;
     background-color: var(--color-white);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    /* FIX: Added flexbox to align content */
+    display: flex;
+    flex-direction: column;
 }
 
 .journal-item:hover {
@@ -525,7 +527,7 @@ main > section {
 
 .journal-item-image {
     width: 100%;
-    height: 220px; /* FIX: Reduced image height */
+    height: 220px;
     overflow: hidden;
 }
 
@@ -542,6 +544,10 @@ main > section {
 
 .journal-item-text {
     padding: 1.5rem;
+    /* FIX: Added flexbox to align content */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .journal-item-category {
@@ -563,8 +569,10 @@ main > section {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
     color: #666;
-    margin-left: 0; /* Override global center */
-    margin-right: 0; /* Override global center */
+    margin-left: 0;
+    margin-right: 0;
+    /* FIX: Added flex-grow to push the readmore link down */
+    flex-grow: 1;
 }
 
 .journal-item-readmore {
