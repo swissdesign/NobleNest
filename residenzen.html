@@ -5,18 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Das Tal | Einblicke aus Andermatt | Noble Nests</title>
-    <meta name="description" content="Entdecken Sie das Urserntal durch die Augen eines Insiders. Kuratierte Geschichten und Geheimtipps aus Andermatt von Noble Nests.">
+    <title>Unsere Residenzen | Noble Nests</title>
+    <meta name="description" content="Entdecken Sie die von Noble Nests betreuten Residenzen. Jedes Zuhause ein Versprechen für Qualität, Komfort und authentischen Stil in Andermatt.">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
     <!-- JavaScript (deferred for performance) -->
     <script src="script.js" defer></script>
 </head>
 <body>
 
-    <!-- HEADER SECTION START (Copied from index.html) -->
+    <!-- HEADER SECTION START -->
     <header class="main-header">
         <div class="container">
             <a href="/" class="logo">Noble Nests</a>
@@ -41,65 +45,68 @@
         <!-- PAGE HEADER SECTION START -->
         <section class="page-header hero">
              <div class="hero-content container">
-                <h1 class="fade-in-on-scroll">Einblicke ins Tal</h1>
-                <p class="fade-in-on-scroll">Andermatt ist mehr als ein Ort – es ist ein Gefühl. Hier teilen wir unsere Leidenschaft für das Tal, seine verborgenen Schätze und die Menschen, die es so besonders machen.</p>
+                <h1 class="fade-in-on-scroll">Unsere Residenzen</h1>
+                <p class="fade-in-on-scroll">Jedes Zuhause in unserem Portfolio wird nach den höchsten Standards der 'Authentic Premium'-Philosophie gepflegt. Hier sehen Sie ein Beispiel unseres Engagements für Qualität und Stil.</p>
             </div>
         </section>
         <!-- PAGE HEADER SECTION END -->
 
-        <!-- JOURNAL GRID SECTION START -->
-        <section class="journal-section">
-            <div class="container">
-                <div class="journal-grid">
+        <!-- PROPERTY PORTFOLIO SECTION START -->
+        <section class="portfolio-section">
+            <div class="property-list">
 
-                    <!-- --- START: Journal Item 1 (The Repeatable Component) --- -->
-                    <a href="#" class="journal-item fade-in-on-scroll">
-                        <div class="journal-item-image">
-                            <img src="https://images.unsplash.com/photo-1598231713453-5684d008779f?q=80&w=2940&auto=format&fit=crop" alt="Eine ruhige Berglandschaft im Unteralptal">
+                <!-- --- START: Property Item (The Repeatable Component) --- -->
+                <article class="property-item">
+                    
+                    <!-- VIDEO HERO START -->
+                    <div class="property-video-hero">
+                        <video class="property-video" src="hero-video.mp4" muted playsinline preload="auto"></video>
+                        <div class="property-header-overlay">
+                             <div class="container">
+                                <h2 class="property-title">Casa Piz Badus</h2>
+                                <span class="property-details">2 Schlafzimmer | Bis zu 4 Gäste</span>
+                            </div>
                         </div>
-                        <div class="journal-item-text">
-                            <span class="journal-item-category">Wandern</span>
-                            <h3>Die Stille des Unteralptals: Eine Wanderung für die Seele</h3>
-                            <p>Entdecken Sie einen unserer liebsten Kraftorte, abseits der bekannten Wege...</p>
-                            <span class="journal-item-readmore">Weiterlesen &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- --- END: Journal Item 1 --- -->
+                    </div>
+                    <!-- VIDEO HERO END -->
 
-                    <!-- --- START: Journal Item 2 --- -->
-                    <a href="#" class="journal-item fade-in-on-scroll">
-                        <div class="journal-item-image">
-                            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=2866&auto=format&fit=crop" alt="Ein rustikales, lokales Gericht in einem Bergrestaurant">
+                    <div class="property-content">
+                        <!-- FULL WIDTH STRIP START -->
+                        <div class="full-width-strip fade-in-on-scroll">
+                            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2900&auto=format&fit=crop" alt="Heller und offener Wohnbereich der Casa Piz Badus">
+                            <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?q=80&w=2900&auto=format&fit=crop" alt="Detailaufnahme einer kuratierten Dekoration">
+                            <img src="https://images.unsplash.com/photo-1615875605825-5eb9bb5c3926?q=80&w=2892&auto=format&fit=crop" alt="Aussicht vom Balkon auf die Berge">
                         </div>
-                        <div class="journal-item-text">
-                            <span class="journal-item-category">Kulinarik</span>
-                            <h3>Wo die Einheimischen essen: Ein Guide zu den besten Tischen</h3>
-                            <p>Vergessen Sie die Touristenfallen. Wir verraten Ihnen, wo Sie die authentische Küche des Tals finden...</p>
-                            <span class="journal-item-readmore">Weiterlesen &rarr;</span>
+                        <!-- FULL WIDTH STRIP END -->
+                        
+                        <div class="container">
+                            <div class="property-description fade-in-on-scroll">
+                                <div class="two-column-grid">
+                                    <div class="column">
+                                        <h3>Das Erlebnis</h3>
+                                        <p>Die Casa Piz Badus ist ein warmer, einladender Rückzugsort, der modernes Design mit alpiner Gemütlichkeit verbindet. Grosse Fenster fluten die Räume mit Licht und geben den Blick auf die atemberaubende Bergkulisse frei. Perfekt für Familien oder Paare, die Ruhe und Stil suchen.</p>
+                                    </div>
+                                    <div class="column">
+                                        <h3>Noble Nests Details</h3>
+                                        <ul>
+                                            <li>Kuratiert mit Kunstwerken lokaler Künstler</li>
+                                            <li>Morgenkaffee mit direktem Blick auf den Gemsstock</li>
+                                            <li>Eine Auswahl an Wanderkarten und Bergliteratur</li>
+                                            <li>Perfekt ausgestattet für einen entspannten Familienurlaub</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </a>
-                    <!-- --- END: Journal Item 2 --- -->
+                    </div>
+                </article>
+                <!-- --- END: Property Item --- -->
 
-                    <!-- --- START: Journal Item 3 --- -->
-                    <a href="#" class="journal-item fade-in-on-scroll">
-                        <div class="journal-item-image">
-                            <img src="https://images.unsplash.com/photo-1518983546422-9c42a5598b25?q=80&w=2940&auto=format&fit=crop" alt="Kinder, die Spass im Schnee haben">
-                        </div>
-                        <div class="journal-item-text">
-                            <span class="journal-item-category">Familie</span>
-                            <h3>Abenteuer für die Kleinen: Der beste Skihang für Aurelio & Dominic</h3>
-                            <p>Ein persönlicher Tipp für Familien: Dieser Hang ist perfekt für die ersten Schwünge und garantiert strahlende Kinderaugen...</p>
-                            <span class="journal-item-readmore">Weiterlesen &rarr;</span>
-                        </div>
-                    </a>
-                    <!-- --- END: Journal Item 3 --- -->
-
-                </div>
             </div>
         </section>
-        <!-- JOURNAL GRID SECTION END -->
+        <!-- PROPERTY PORTFOLIO SECTION END -->
 
-        <!-- FINAL CTA SECTION START (Copied from index.html) -->
+        <!-- FINAL CTA SECTION START -->
         <section id="anfrage" class="cta-section">
             <div class="container fade-in-on-scroll">
                 <h2>Bereit, das Potenzial Ihrer Immobilie zu entfalten?</h2>
@@ -112,7 +119,7 @@
     </main>
     <!-- MAIN CONTENT END -->
 
-    <!-- FOOTER SECTION START (Copied from index.html) -->
+    <!-- FOOTER SECTION START -->
     <footer class="main-footer">
         <div class="container">
             <nav class="footer-nav">
@@ -139,4 +146,3 @@
 
 </body>
 </html>
-
