@@ -447,6 +447,21 @@ main > section {
     object-fit: cover;
 }
 
+.property-header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 4rem 0;
+    color: var(--color-white);
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    z-index: 10; /* Ensure it's above the video */
+}
+
+.property-header-overlay h2, .property-header-overlay .property-details {
+    color: var(--color-white);
+}
+
 .property-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -471,8 +486,8 @@ main > section {
     margin-left: -50vw;
     margin-right: -50vw;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem; /* Small gap between images */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.5rem;
     margin-top: 3rem;
     margin-bottom: 6rem;
 }
@@ -507,6 +522,74 @@ main > section {
     position: absolute;
     left: 0;
     color: var(--color-accent);
+}
+
+/* --- NEW: Das Tal / Journal Page Styling --- */
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.journal-item {
+    display: block;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.journal-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.journal-item-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.journal-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.journal-item:hover .journal-item-image img {
+    transform: scale(1.05);
+}
+
+.journal-item-text {
+    padding: 1.5rem;
+}
+
+.journal-item-category {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+}
+
+.journal-item-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.journal-item-text p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.journal-item-readmore {
+    font-weight: 700;
+    color: var(--color-primary);
 }
 
 
