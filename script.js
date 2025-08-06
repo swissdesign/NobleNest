@@ -136,23 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 pin: true,
                 scrub: 1,
                 start: "top top",
-                end: "+=2000" // Corrected, more reasonable scroll length
+                end: `+=${narrativeLines.length * 100}%` // This is the original, long-scroll version
             }
         });
 
-        // Set initial state for all lines
-        gsap.set(narrativeLines, { opacity: 0, y: 20 });
-
         narrativeLines.forEach((line, index) => {
-            // Animate the line into view
-            tl.to(line, { opacity: 1, y: 0, duration: 1 }, index * 0.8);
-            
+            // Fade in the line
+            tl.to(line, { opacity: 1, duration: 1 }, index);
             // Hold it, then fade it out (unless it's the last one)
             if (index < narrativeLines.length - 1) {
-                tl.to(line, { opacity: 0, y: -20, duration: 1 }, index * 0.8 + 0.8);
+                tl.to(line, { opacity: 0, duration: 1 }, index + 0.8);
             }
         });
     }
+
+    // Run the application
+    initApp();
+
+});
 
     // Run the application
     initApp();
