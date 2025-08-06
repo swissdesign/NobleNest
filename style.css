@@ -300,6 +300,7 @@ main > section {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 3rem;
     margin-top: 3rem;
+    align-items: start; /* FIX: Aligns items to the top of the row */
 }
 
 .feature-item {
