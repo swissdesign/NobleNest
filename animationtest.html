@@ -77,34 +77,33 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const slideDistance = 1800; // how far each N moves
+    const revealWidth   = 6200; // width of the mask rect
+
     const tl = gsap.timeline({
         paused: true,
         defaults: { duration: 0.67, ease: "power2.inOut" }
     });
 
-    // Distances/sizes relative to the full viewBox
-    const slideDistance = 1800; // how far each N slides
-    const revealWidth = 6200;   // width of the reveal rect
+    // Initial positions
+    gsap.set("#endLogo", { opacity: 0 });
+    gsap.set("#revealRect", { x: -revealWidth });
 
-    // Initial states
-    gsap.set("#endLogo", { opacity: 0 });           // you chose visible; reveal controlled by clip
-    gsap.set("#revealRect", { x: -revealWidth });   // fully off left -> nothing of endLogo shows
-
-    // Timeline:
+    // Animation chain
     tl
-  .to("#N_left",  { x: -slideDistance }, 0)
-  .to("#N_right", { x:  slideDistance }, 0)
-  .to("#startNs", { opacity: 0 }, 0.4)
-  .to("#revealRect", { x: 0 }, 0)
-  .to("#endLogo", { opacity: 1 }, 0.15); // <-- chained, not separate
+      .to("#N_left",  { x: -slideDistance }, 0)
+      .to("#N_right", { x:  slideDistance }, 0)
+      .to("#startNs", { opacity: 0 }, 0.4)
+      .to("#revealRect", { x: 0 }, 0.4)
+      .to("#endLogo", { opacity: 1 }, 0.4);
 
     // Hook up hover
     const svg = document.getElementById("nobleNest");
     svg.addEventListener("mouseenter", () => tl.play());
     svg.addEventListener("mouseleave", () => tl.reverse());
 
-    // Respect reduced motion: show end state
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Accessibility: if user prefers reduced motion, skip to end
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         tl.progress(1);
     }
 });
