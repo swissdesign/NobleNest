@@ -92,18 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Timeline:
     tl
-      // 1) Slide the start N’s apart
-      .to("#N_left",  { x: -slideDistance }, 0)
-      .to("#N_right", { x:  slideDistance }, 0)
-
-      // 2) Fade out the start N’s near the end of their slide
-      .to("#startNs", { opacity: 0 }, 0.4)
-
-      // 3) Wipe-reveal the final logo (endLogo is already opacity:1, so the clip does the reveal
-      .to("#revealRect", { x: 0 }, 0);
-
-      // 4)  end logo 
-      .to("#endLogo", { opacity: 1 }, 0.15)
+  .to("#N_left",  { x: -slideDistance })
+  .to("#N_right", { x:  slideDistance }, "<") // "<" means same time as previous
+  .to("#startNs", { opacity: 0 })
+  .to("#revealRect", { x: 0 })
+  .to("#endLogo", { opacity: 1 });
 
     // Hook up hover
     const svg = document.getElementById("nobleNest");
