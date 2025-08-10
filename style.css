@@ -47,6 +47,37 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* --- NEW: Loader Styles --- */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#loader svg {
+    width: 25%;
+    max-width: 200px; /* Adjusted for a better look */
+    height: auto;
+}
+
+body.loaded #loader {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.loading > *:not(#loader) {
+    display: none;
+}
+/* --- END: Loader Styles --- */
+
+
 /* Added no-scroll class for mobile menu */
 body.no-scroll {
     overflow: hidden;
@@ -88,7 +119,7 @@ a {
     transition: color 0.3s ease-out;
 }
 
-a:not(.btn-primary):not(.btn-secondary)::after {
+a:not(.btn-primary):not(.btn-secondary):not(.logo)::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -101,11 +132,11 @@ a:not(.btn-primary):not(.btn-secondary)::after {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-a:not(.btn-primary):not(.btn-secondary):hover {
+a:not(.btn-primary):not(.btn-secondary):not(.logo):hover {
     color: var(--color-accent);
 }
 
-a:not(.btn-primary):not(.btn-secondary):hover::after {
+a:not(.btn-primary):not(.btn-secondary):not(.logo):hover::after {
     transform: scaleX(1);
 }
 
@@ -205,6 +236,18 @@ main > section {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-primary);
+}
+
+/* --- NEW: SVG Logo Style --- */
+.logo-svg {
+    height: 40px; /* Control the height of the logo */
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease-out;
+}
+
+.logo-svg:hover {
+    transform: scale(1.05);
 }
 
 /* Main Navigation */
@@ -755,3 +798,4 @@ main > section {
         background-color: var(--color-white); /* Change color on open */
     }
 }
+
