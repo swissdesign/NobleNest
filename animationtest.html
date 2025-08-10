@@ -92,9 +92,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Timeline:
     tl
-  .to("#N_left",  { x: -slideDistance })
-  .to("#N_right", { x:  slideDistance }, "<") // "<" means same time as previous
-  .to("#startNs", { opacity: 0 })
+  .to("#N_left",  { x: -slideDistance }, 0)
+  .to("#N_right", { x:  slideDistance }, 0)
+  .to("#startNs", { opacity: 0 }, 0.4)
   .to("#revealRect", { x: 0 })
   .to("#endLogo", { opacity: 1 });
 
