@@ -2,8 +2,8 @@
 
 /** Created by P. Heiniger Design as a weird nerdy love letter to Andrina Schnyder *
  * Main script for the Noble Nests website.
- * This script handles all core interactive functionalities including mobile navigation,
- * a sticky header effect, and scroll-triggered animations.
+ * This script handles all core interactive functionalities including the loading animation,
+ * the header logo hover animation, mobile navigation, a sticky header, and scroll-triggered animations.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -11,21 +11,95 @@ document.addEventListener('DOMContentLoaded', () => {
      * Initializes all interactive components of the site.
      */
     function initApp() {
+        // Run the new loader first
+        initLoader();
+        
+        // Initialize existing components
         initMobileNav();
         initScrollAnimations();
 
         // Check if GSAP and ScrollTrigger are loaded before initializing GSAP-based animations
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-            initStickyHeaderWithGSAP();
-            initPinnedScrollAnimation();
-            initVideoScrubAndOverlay(); // For residenzen.html
+        if (typeof gsap !== 'undefined') {
+            // Initialize the new header logo hover animation
+            initHeaderLogoAnimation();
+            
+            // Check for ScrollTrigger specifically for scroll-based animations
+            if (typeof ScrollTrigger !== 'undefined') {
+                 gsap.registerPlugin(ScrollTrigger);
+                 initStickyHeaderWithGSAP();
+                 initPinnedScrollAnimation();
+                 initVideoScrubAndOverlay(); // For residenzen.html
+            } else {
+                console.warn('ScrollTrigger not loaded. Scroll-based animations disabled.');
+                initStickyHeader(); // Fallback for sticky header
+            }
         } else {
-            console.warn('GSAP or ScrollTrigger not loaded. Advanced animations disabled.');
-            // Fallback to non-GSAP sticky header if needed
+            console.warn('GSAP not loaded. All advanced animations disabled.');
             initStickyHeader(); 
         }
     }
+
+    /**
+     * --- NEW: Initializes and controls the loading animation ---
+     */
+    function initLoader() {
+        const loader = document.querySelector('#loader');
+        if (!loader) return;
+
+        document.body.classList.add('loading');
+
+        const slideDistance = 1800;
+        gsap.set("#endLogoLoader", { opacity: 0 });
+        gsap.set("#startNsLoader", { transformOrigin: "50% 50%" });
+
+        const loadingTl = gsap.timeline({
+            defaults: { ease: "power2.inOut", duration: 0.8 },
+            onComplete: () => {
+                // When the timeline completes, hide the loader and show the site
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loading');
+            }
+        });
+
+        loadingTl.to(["#N_left_loader", "#N_right_loader"], {
+            x: (i, t) => (t.id === 'N_left_loader' ? -slideDistance : slideDistance),
+            opacity: 0
+        }, 0)
+        .to("#endLogoLoader", { opacity: 1 }, 0.2)
+        .to("#endLogoLoader", { opacity: 0 }, "+=1.5")
+        .to(["#N_left_loader", "#N_right_loader"], { x: 0, opacity: 1 }, "<0.2")
+        .to("#startNsLoader", { rotation: "+=180" });
+    }
+
+    /**
+     * --- NEW: Initializes the hover animation for the header SVG logo ---
+     */
+    function initHeaderLogoAnimation() {
+        const headerLogo = document.querySelector("#headerLogo");
+        if (!headerLogo) return;
+        
+        const slideDistance = 1800;
+
+        const tl = gsap.timeline({
+            paused: true,
+            defaults: { duration: 0.7, ease: "power2.inOut" }
+        });
+
+        gsap.set("#endLogoHeader", { opacity: 0 });
+
+        tl.to(["#N_left_header", "#N_right_header"], {
+            x: (index, target) => (target.id === 'N_left_header' ? -slideDistance : slideDistance),
+            opacity: 0,
+        }, 0);
+
+        tl.to("#endLogoHeader", {
+            opacity: 1
+        }, 0.2);
+
+        headerLogo.addEventListener("mouseenter", () => tl.play());
+        headerLogo.addEventListener("mouseleave", () => tl.reverse());
+    }
+
 
     /**
      * Sets up the mobile navigation toggle functionality.
@@ -182,6 +256,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tl.to(textOverlay, { opacity: 0 }, 0);
         });
     }
+
+    // Run the application
+    initApp();
+
+});
+
 
     // Run the application
     initApp();
