@@ -69,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .to("#endLogoLoader", { opacity: 0 }, "+=1.5")
         .to(["#N_left_loader", "#N_right_loader"], { x: 0, opacity: 1 }, "<0.2")
         .to("#startNsLoader", { rotation: "+=180" });
+        
+        // --- FIX: Start the animation ---
+        loadingTl.play();
     }
 
     /**
@@ -262,8 +265,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
-    // Run the application
-    initApp();
-
-});
