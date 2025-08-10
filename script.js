@@ -252,8 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 defaults: { ease: "none" }
             });
 
-            video.onloadedmetadata = function() {
-                tl.to(video, { currentTime: video.duration });
+        // This is the updated part
+        video.onloadedmetadata = function() {
+            tl.to(video, { currentTime: video.duration });
+            // Add this line to force a recalculation
+            ScrollTrigger.refresh(); 
+            
             };
             
             tl.to(textOverlay, { opacity: 0 }, 0);
