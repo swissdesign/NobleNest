@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
   .to("#N_left",  { x: -slideDistance }, 0)
   .to("#N_right", { x:  slideDistance }, 0)
   .to("#startNs", { opacity: 0 }, 0.4)
-  .to("#revealRect", { x: 0 })
-  .to("#endLogo", { opacity: 1 })
+  .to("#revealRect", { x: 0 }, 0)
+  .to("#endLogo", { opacity: 1 }, 0.15); // <-- chained, not separate
 
     // Hook up hover
     const svg = document.getElementById("nobleNest");
